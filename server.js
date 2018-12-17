@@ -1,10 +1,13 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+var express = require('express'); // Require Express
+var bodyParser = require('body-parser'); // Require the module required for using form data
+var app = express(); // Instantiate Express to app-variable
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/views/pics/'));
+app.use(bodyParser.urlencoded({extended: true})); // For parsing application
+app.set('view engine', 'ejs'); // Set EJS
+app.use(express.static(__dirname + '/views/pics/')); // Make use of static files
+app.set("port", (process.env.PORT || 5000)); // Set port
 
+// Set constants
 const MongoClient = require("mongodb").MongoClient;
 const url = "mongodb://user:salasana123@ds026018.mlab.com:26018/tietokanta";
 const database = "tietokanta";
@@ -127,7 +130,7 @@ app.get("*", (req, res) => {
     res.redirect("/");
 });
 
-// Start server on port 8081
-app.listen(8081, () => {
-  console.log("Server is runnit at port 8081..")
+// Start server on port 5000
+app.listen(app.get("port"), function() {
+  console.log("Node app is running on port", app.get("port"));
 });
