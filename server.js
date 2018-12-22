@@ -9,7 +9,7 @@ app.set("port", (process.env.PORT || 5000)); // Set port
 
 // Set constants
 const MongoClient = require("mongodb").MongoClient;
-const url = "mongodb://user:salasana123@ds026018.mlab.com:26018/tietokanta";
+const url = process.env.Mongo_url; // Set to use environment variable from Heroku
 const database = "tietokanta";
 
 //***********************************************************************************************//
